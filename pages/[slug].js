@@ -2,56 +2,26 @@ import HeaderScreen from "../screen/HeaderScreen";
 import Registeration from "./Registeration";
 import data from "../data/Data";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 
-const index = (props) => {
-  const router = useRouter();
-  console.log(router);
+const detail = () => {
   return (
     <Container>
       <Wrapper>
         <Holder>
-          {props.newData.map((props) => (
-            <Card
-              onClick={() => {
-                router.push(`/${props.slug}`);
-              }}
-              key={props.id}
-            >
-              <Image src={props.image} alt="image" />
-              <Content>
-                <Name>{props.name}</Name>
-                <Title>{props.course}</Title>
-              </Content>
-            </Card>
-          ))}
+          <Card>
+            <Image src="" alt="image" />
+            <Content>
+              <Name>props.name</Name>
+              <Title>props.course</Title>
+            </Content>
+          </Card>
         </Holder>
       </Wrapper>
     </Container>
   );
 };
 
-export default index;
-
-export async function getServerSideProps(context) {
-  const { req, res } = context;
-
-  return {
-    props: {
-      newData: data,
-      // revalidate: 50,
-    },
-  };
-}
-
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       newData: data,
-//       // revalidate: 50,
-//     },
-//   };
-// }
+export default detail;
 
 const Title = styled.div``;
 
@@ -103,7 +73,6 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  min-height: calc(100vh - 80px);
-  height: 100%;
+  height: calc(100vh - 80px);
   background: lightgray;
 `;
